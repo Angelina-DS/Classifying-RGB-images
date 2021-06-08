@@ -1,4 +1,4 @@
-# Classifying RG images
+# Classifying RGB images
 We are going to train and optimize an artificial neural network on images from the CIFAR database. In that case, the images are classified according to 10 different classes : airplane, car, truck, bird, cat, dog, deer, horse, frog and ship. <br>
 
 There are several difficulties : <br>
