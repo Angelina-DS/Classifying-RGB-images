@@ -101,7 +101,7 @@ model.summary() # Returns a full description of the network
 #Training the model
 history = model.fit(train_images, train_labels, epochs=10, batch_size=32, verbose=1, validation_data=(test_images,test_labels))
 
-##Evaluate the model accuracy
+##Evaluating the model accuracy
 test_loss, test_acc = model.evaluate(test_images, test_labels) #Calculates the accuracy of the model using the test set
 print('test_acc:', test_acc)
 
@@ -140,4 +140,37 @@ for i, incorrect in enumerate(incorrect_indices[:3]):
     plt.imshow(test_images_original[incorrect], interpolation='none')
     plt.title("Predicted {}, Class {}".format(predicted_classes[incorrect], test_labels[incorrect][0]))
     plt.show()
-    
+
+history_dict = history.history
+plt.rcParams['figure.figsize'] = (10,10) # Make the figures a bit bigger
+
+#Plotting the evolution of the accuracy during the training
+
+acc_values = history_dict['accuracy']
+val_acc_values = history_dict['val_accuracy']
+
+n = len(acc_values)
+epochs = range(1, n+1)
+
+#plt.subplot(2,1,1)
+plt.plot(epochs, acc_values, 'bo', label='Training acc') #bo is for blue dot
+plt.plot(epochs, val_acc_values, 'b', label='Validation acc') #b is for solid blue line
+plt.title('Training and validation accuracy')
+plt.xlabel('Epochs')
+plt.ylabel('Accuracy')
+plt.legend()
+plt.show()
+
+##Plotting the evolution of the loss during the training
+
+loss_values = history_dict['loss']
+val_loss_values = history_dict['val_loss']
+
+#plt.subplot(2,1,2)
+plt.plot(epochs, loss_values, 'bo', label='Training loss')
+plt.plot(epochs, val_loss_values, 'b', label='Validation loss')
+plt.title('Training and validation loss')
+plt.xlabel('Epochs')
+plt.ylabel('Loss')
+plt.legend()
+plt.show()
