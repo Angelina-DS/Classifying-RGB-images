@@ -64,10 +64,10 @@ test_images[:,:,:,1] = (test_images[:,:,:,1] - Mean_g)/Std_g
 test_images[:,:,:,2] = (test_images[:,:,:,2] - Mean_b)/Std_b
 
 #Changing the labels from single digit to categorical or one-hot format :
-#print(train_labels[0])
+#print(train_labels[0]) optional, to view the actual shape of train_labels
 train_labels = np_utils.to_categorical(train_labels)
 test_labels = np_utils.to_categorical(test_labels)
-#print(train_labels[0])
+#print(train_labels[0]) optional, to view the new shape of train_labels
 
 ##Creating and training a simple network for digit classification
 """We will now build a CNN able to read the CIFAR images as input and return a vector 
@@ -145,14 +145,13 @@ history_dict = history.history
 plt.rcParams['figure.figsize'] = (10,10) # Make the figures a bit bigger
 
 #Plotting the evolution of the accuracy during the training
-
 acc_values = history_dict['accuracy']
 val_acc_values = history_dict['val_accuracy']
 
 n = len(acc_values)
 epochs = range(1, n+1)
 
-#plt.subplot(2,1,1)
+#plt.subplot(2,1,1) not necessary
 plt.plot(epochs, acc_values, 'bo', label='Training acc') #bo is for blue dot
 plt.plot(epochs, val_acc_values, 'b', label='Validation acc') #b is for solid blue line
 plt.title('Training and validation accuracy')
@@ -162,7 +161,6 @@ plt.legend()
 plt.show()
 
 ##Plotting the evolution of the loss during the training
-
 loss_values = history_dict['loss']
 val_loss_values = history_dict['val_loss']
 
